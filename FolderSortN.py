@@ -32,7 +32,6 @@ def main():
         print("No files in directory. Enter a different path value: ")
         return
     #Now, for each file in the list, split it into folder name and file name.\
-    dirList.sort()
     fileList = []
     pathList = []
     for dirFile in dirList:
@@ -42,7 +41,7 @@ def main():
         else:
             fileList.append(fileObj)
             pathList.append(dirPath / dirFile)
-    for folderLevel in (0, len(fileList)):
-        folderMake([0,folderLevel], fileList, dirPath, pathList)
+    for folderLevel in range(0, len(fileList)):
+        folderMake([folderLevel, 0], fileList, dirPath, pathList)
 if(__name__ == "__main__"):
     main()
