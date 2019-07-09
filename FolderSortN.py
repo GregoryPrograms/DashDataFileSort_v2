@@ -7,8 +7,6 @@ from pathlib import Path
 
 def fileMake(matrixPos, matrix, dirPath, foldPaths):
     os.rename(foldPaths[matrixPos[0]], dirPath / matrix[matrixPos[0]][matrixPos[1]])
-    if(matrixPos[0] < len(matrix) - 1):
-        folderMake([matrixPos[0] + 1, 0], matrix, dirPath.parents[matrixPos[1] - 1], foldPaths)
     return
 def folderMake(matrixPos, matrix, dirPath, foldPaths):
     if(matrixPos[1] >= len(matrix[matrixPos[0]]) - 1):
@@ -44,6 +42,7 @@ def main():
         else:
             fileList.append(fileObj)
             pathList.append(dirPath / dirFile)
-    folderMake([0,0], fileList, dirPath, pathList)
+    for folderLevel in (0, len(fileList)):
+        folderMake([0,folderLevel], fileList, dirPath, pathList)
 if(__name__ == "__main__"):
     main()
